@@ -85,7 +85,7 @@ class Catalog_page(Base):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.add_to_cart)))
 
     def get_add_to_cart(self):
-        # если ElementClickInterceptedException, значит нужно прокрутить страницу до него, для этого строчка ниже
+        # если ElementClickInterceptedException, значит нужно прокрутить страницу, для этого строчка ниже
         self.driver.execute_script("var scrollingElement = (document.scrollingElement || document.body);scrollingElement.scrollTop = scrollingElement.scrollHeight;")
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.add_to_cart)))
 
