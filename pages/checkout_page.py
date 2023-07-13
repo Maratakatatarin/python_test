@@ -12,11 +12,10 @@ class Checkout_page(Base):
 
     # Globals
     price_to_checkout_page = '126 510'
-    word_to_checkout_page = 'Ноутбук игровой ASUS TUF Gaming A17 FA707RM-HX031, 17.3", IPS, AMD Ryzen 7 6800HS, ' \
-                            '8-ядерный, 16ГБ DDR5, 1ТБ SSD, NVIDIA GeForce RTX 3060 для ноутбуков - 6 ГБ, серый'
 
     # Locators
     checkout_price = "//*[@id='__next']/div/div[2]/div/div/div[2]/div[1]/span/span/span[1]"
+    catalog_price = "//*[@id='__next']/div/main/section/div[2]/div/div/section/div[2]/div[2]/div[3]/div/div[7]/div[1]/div[2]/span/span/span[1]"
 
     first_name = "//input[@name='contact-form_firstName']"
     last_name = "//input[@name='contact-form_lastName']"
@@ -100,7 +99,7 @@ class Checkout_page(Base):
     def click_zoom_button(self):
         self.get_zoom_button().click()
         print('Click Zoom Button')
-    #
+
     def click_store_choice_button(self):
         self.get_store_choice_button().click()
         print('Click Store Choice Button')
@@ -151,7 +150,7 @@ class Checkout_page(Base):
         self.click_store_selection_button()
         self.click_zoom_button()
         self.click_store_choice_button()
-        self.scroll_to_sp(self.get_scroll_to_sp())
+        self.scroll_to(self.get_scroll_to_sp())
         self.click_select_payment()
         self.input_mail(fake.email())
         self.click_data_confirmation()

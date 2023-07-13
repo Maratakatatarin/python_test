@@ -16,7 +16,6 @@ class Main_page(Base):
 
     burger_menu = "//*[@id='__next']/div/header/div[1]/div[2]/div/button[1]"
     burger_menu_cities = "//button[@data-meta-name='MobileMenu__city-change-button']"
-    button_x = "/html/body/div[22]/div/div/div[2]/div/div[1]"
     select_cities = "//a[@data-meta-name='CitiesItem_Санкт-Петербург']"
     select_notebook = "//*[@id='__next']/div/main/div[1]/div[1]/div/div[2]/div/div[2]/div/a[1]"
     word_main_page = "//*[@id='__next']/div/header/div[2]/div/div/div[2]/div[1]/button/span/span"
@@ -57,17 +56,13 @@ class Main_page(Base):
         self.get_select_cities().click()
         print('Click Select Cities')
 
-    def click_button_x(self):
-        self.get_button_x().click()
-        print('Click Button x')
-
     def click_select_notebook(self):
         self.get_select_notebook().click()
         print('Click Select Notebooks')
 
     # Methods
     def select_category(self):
-        self.driver.get(self.url) #теперь можно удалить так как работаем уже с открытым браузером
+        self.driver.get(self.url)
         self.get_current_url()
         self.driver.fullscreen_window()
         self.assert_url("https://www.citilink.ru/")
@@ -77,7 +72,9 @@ class Main_page(Base):
             self.click_select_notebook()
             time.sleep(3)
         except:
-            self.click_word_main_page()
+            self.driver.set_window_size(960,1080)
+            self.click_burger_menu()
+            self.click_burger_menu_cities()
             self.click_select_cities()
             self.click_select_notebook()
             time.sleep(3)

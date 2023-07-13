@@ -9,11 +9,10 @@ class Catalog_page(Base):
 
     # Globals
     price_to_catalog_page = '126 510'
-    word_to_checkout_page = 'Ноутбук игровой ASUS TUF Gaming A17 FA707RM-HX031, 17.3", IPS, AMD Ryzen 7 6800HS, ' \
-                            '8-ядерный, 16ГБ DDR5, 1ТБ SSD, NVIDIA GeForce RTX 3060 для ноутбуков - 6 ГБ, серый'
-
+                            # 242 990
     # Locators
     catalog_price = "//span[text()='126 510']"
+                    #//span[text()='242 990']
 
     filter_button = "//div[@class='app-catalog-ud6ms9 eyoh4ac0']"
     filter_price = "//div[@class='rc-slider rc-slider-horizontal']"
@@ -30,7 +29,9 @@ class Catalog_page(Base):
     button_show_results = "//div[@class='css-1xdhyk6 e1hnr9x50']"
     sort_button = "//*[@id='__next']/div/main/section/div[2]/div/div/section/div[2]/div[1]/div[2]/div[1]"
     low_price = "//span[text()='по возрастанию цены']"
-    add_to_cart = "//*[@id='__next']/div/main/section/div[2]/div/div/section/div[2]/div[2]/div[3]/div/div[7]/div[2]/button"
+    add_to_cart = "//*[@id='__next']/div/main/section/div[2]/div/div/section/div[2]/div[2]/div[3]/div/div[7]/div[2]"
+                  #//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[2]/div[2]/div[10]/div/div[7]/div[2]
+
 
     # Getters
     def get_catalog_price(self):
@@ -79,6 +80,9 @@ class Catalog_page(Base):
         low_price = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.low_price)))
         self.driver.execute_script("arguments[0].click();", low_price)
         return low_price
+
+    def get_scroll_to_cart(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.add_to_cart)))
 
     def get_add_to_cart(self):
         # если ElementClickInterceptedException, значит нужно прокрутить страницу до него, для этого строчка ниже
@@ -170,5 +174,6 @@ class Catalog_page(Base):
         time.sleep(3)
         self.click_low_price()
         self.assert_text(self.get_catalog_price(), '126 510')
+        self.scroll_to(self.get_scroll_to_cart())
         self.click_add_to_cart()
         time.sleep(3)

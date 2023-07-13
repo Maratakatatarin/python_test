@@ -10,7 +10,6 @@ from pages.checkout_page import Checkout_page
 from pages.order_page import Order_page
 
 
-#@pytest.mark.order(1)
 def test_buy_notebook(set_up):
     # чтобы в терминале не показывало ничего лишнего см. https://yandex.ru/video/preview/14751657242096540528,
     # затем пишем две нижние строчки с "options", затем добавляем "chrome_options=options" в "g = Service"
@@ -39,5 +38,3 @@ def test_buy_notebook(set_up):
     chp.client_information()
     time.sleep(5)
 
-    # закрыть браузер
-    # driver.quit()
